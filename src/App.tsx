@@ -3,8 +3,8 @@ import { useReadCypher } from 'use-neo4j'
 import './App.css';
 
 function App() {
-  const { cypher, error, loading, first } = useReadCypher('MATCH (n) RETURN count(n) AS count')
-
+  // const { cypher, error, loading, first} = useReadCypher('MATCH (n) RETURN count(n) AS count')
+  const { cypher, error, loading, first, records} = useReadCypher('MATCH (n:Person)-[re]-(b) RETURN n, re, b LIMIT 10')
   // Default to Loading Message
   let result = (<div className="ui active dimmer">Loading...</div>)
 
@@ -14,7 +14,16 @@ function App() {
   }
   else if ( !loading ) {
     // Get the count
-    const count = first?.get('count').toNumber()
+    // console.log(records)
+    if (records instanceof Array) {
+      console.log(records)
+      for (let obj of records) {
+        console.log(obj.toObject())
+      }
+    }
+
+    // const count = first?.get('count').toNumber()
+    const count = 114514 
     result = (<div>There are {count} nodes in the database.</div>)
   }
 
