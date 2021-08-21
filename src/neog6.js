@@ -22,33 +22,19 @@ export default class NeoG6 {
       // map to list
       const data = {
         // 点集
-        nodes: [
-          {
-            id: "node1",
-            x: 100,
-            y: 200,
-          },
-          {
-            id: "node2",
-            x: 300,
-            y: 200,
-          },
-        ],
+        nodes: [],
         // 边集
-        edges: [
-          // 表示一条从 node1 节点连接到 node2 节点的边
-          {
-            source: "node1",
-            target: "node2",
-          },
-        ],
+        edges: [],
+        // 表示一条从 node1 节点连接到 node2 节点的边
       };
-      let temp = new Map(Object.entries(this._nodes))
-      let tvs = []
-      for (const v of temp.values()){
+      let a = new Map(Object.entries(this._nodes))
+      let b = new Map(Object.entries(this._edges))
+      for (const v of a.values()){
         data.nodes.push(v)
       }
-      console.log(tvs)
+      for (const v of b.values()){
+        data.edges.push(v)
+      }
       return data;
     }
     buildNode =(neo4jNode) =>{

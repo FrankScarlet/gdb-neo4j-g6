@@ -7,13 +7,12 @@ import { Toolbar } from "@antv/graphin-components";
 
 function App() {
   // const { cypher, error, loading, first} = useReadCypher('MATCH (n) RETURN count(n) AS count')
-  const { cypher, error, loading, first, records } = useReadCypher(
+  const { cypher, error, loading, records } = useReadCypher(
     "MATCH (n:Person)-[re]-(b) RETURN n, re, b LIMIT 10"
   );
   // Default to Loading Message
   let result = <div className="ui active dimmer">Loading...</div>;
   let g6 = new NeoG6();
-  let temp;
   // Was there an error om the query?
   if (error) {
     result = <div className="ui negative message">{error.message}</div>;
@@ -22,11 +21,12 @@ function App() {
       g6.toG6Format(records)
     }
     // Get the count
-    const count = first?.get('count').toNumber()
+    // const count = first?.get('count').toNumber()
+    const count = 114514
     result = (
       <div>
         There are {count} nodes in the database.
-        <Graphin data={g6.data} layout={{ name: "concentric" }}>
+        <Graphin height={600} data={g6.data} layout={{ name: "concentric" }}>
           <Toolbar />
         </Graphin>
       </div>
