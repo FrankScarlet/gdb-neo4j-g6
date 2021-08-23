@@ -3,7 +3,56 @@ import { useReadCypher } from "use-neo4j";
 import "./App.css";
 import NeoG6 from "./neog6";
 import Graphin from "@antv/graphin";
-import { Toolbar } from "@antv/graphin-components";
+import { Toolbar, MiniMap } from "@antv/graphin-components";
+
+// ES5 compile error
+// import {
+//   ZoomOutOutlined,
+//   ZoomInOutlined,
+//   PieChartOutlined,
+//   DeleteOutlined,
+//   VideoCameraAddOutlined
+// } from "@ant-design/icons"; 
+
+
+// const handleClick = (graphinContext, config) => {
+//   const { apis } = graphinContext;
+//   const { handleZoomIn, handleZoomOut } = apis;
+//   if (config.key === "zoomIn") {
+//     handleZoomIn();
+//   } else if (config.key === "zoomOut") {
+//     handleZoomOut();
+//   }
+// };
+
+// const options = [
+//   {
+//     key: "zoomOut",
+//     name: (
+//       <span>
+//         放大 <ZoomInOutlined />
+//       </span>
+//     ),
+//     icon: <ZoomInOutlined />
+//   },
+//   {
+//     key: "zoomIn",
+//     name: <ZoomOutOutlined />
+//   },
+//   {
+//     key: "visSetting",
+//     name: <PieChartOutlined />
+//   },
+//   {
+//     key: "clearCanvas",
+//     name: <DeleteOutlined />
+//   },
+//   {
+//     key: "showHideElement",
+//     name: <VideoCameraAddOutlined />
+//   }
+// ];
+
 
 function App() {
   // const { cypher, error, loading, first} = useReadCypher('MATCH (n) RETURN count(n) AS count')
@@ -27,7 +76,8 @@ function App() {
       <div>
         There are {count} nodes in the database.
         <Graphin height={600} data={g6.data} layout={{ name: "concentric" }}>
-          <Toolbar />
+        {/* <Toolbar options={options} onChange={handleClick} /> */}
+        <MiniMap visible/>
         </Graphin>
       </div>
     );
